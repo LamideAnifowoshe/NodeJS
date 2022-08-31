@@ -1,0 +1,23 @@
+{
+  "name": "express-js-practice",
+  "version": "1.0.0",
+  "description": "express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LamideAnifowoshe/NodeJS.git"
+  },
+  "author": "Lamide",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LamideAnifowoshe/NodeJS/issues"
+  },
+  "homepage": "https://github.com/LamideAnifowoshe/NodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
