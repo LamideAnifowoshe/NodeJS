@@ -1,20 +1,22 @@
 // const http = require("http");
 const express = require("express");
+const bodyParser = require("body-parser");
+const admin = require("./Routes/admin");
+const shop = require("./Routes/shop");
 
 const app = express();
 
-app.use("/users", (req, res, next) => {
-  console.log("in another middleware handling /users path!");
-  res.send("<h1>Hello from HTML!</h1>");
-  // next()
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/", (req, res, next) => {
-  console.log("/ middleware");
-  //   next();
-  res.send("<p>in the middleware handling just / path!</p>");
-});
+app.use(admin);
+app.use(shop);
+
+// app.use("/users", (req, res, next) => {
+//   console.log("in another middleware handling /users path!");
+//   res.send("<h1>Hello from HTML!</h1>");
+//   // next()
+// });
 
 // const server = http.createServer(app);
 
-app.listen(3000);
+app.listen(8000);
