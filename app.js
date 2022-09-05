@@ -21,6 +21,7 @@ app.use(shop);
 //   res.send("<h1>Hello from HTML!</h1>");
 //   // next()
 // });
+//
 
 app.use((req, res, next) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
