@@ -21,7 +21,7 @@ app.use(shop);
 //   res.send("<h1>Hello from HTML!</h1>");
 //   // next()
 // });
-
+//i have been making changes and nothing seem to appear on my github
 app.use((req, res, next) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
