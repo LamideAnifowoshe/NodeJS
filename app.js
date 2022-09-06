@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const admin = require("./routes/admin");
 const shop = require("./routes/shop");
+const errorController = require("./controller/error");
 // const expressHbs = require("express-handlebars");
 
 const app = express();
@@ -18,7 +19,7 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(admin.routes);
+app.use(admin);
 app.use(shop);
 
 // app.use("/users", (req, res, next) => {
@@ -27,9 +28,7 @@ app.use(shop);
 //   // next()
 // });
 
-app.use((req, res, next) => {
-  res.status(404).render("404", { pageTitle: "Page Not Found" });
-});
+app.use(errorController.get404);
 
 // const server = http.createServer(app);
 
