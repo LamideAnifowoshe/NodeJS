@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const admin = require("./routes/admin");
 const shop = require("./routes/shop");
-const errorController = require("./controller/error");
+const errorController = require("./controllers/error");
 // const expressHbs = require("express-handlebars");
 
 const app = express();
