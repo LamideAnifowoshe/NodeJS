@@ -10,6 +10,7 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = Math.random().toString();
     const p = path.join(
       path.dirname(require.main.filename),
       "data",
@@ -44,10 +45,32 @@ module.exports = class Product {
         console.log(error);
         cb([]);
       }
-      //   if (err) {
+    });
+  }
+  //   if (err) {
 
-      //   } else {
-      //   }
+  //   } else {
+  //   }
+
+  static findById(id, cb) {
+    const getProductsFromFile = (cb) => {
+      const p = path.join(
+        path.dirname(require.main.filename),
+        "data",
+        "products.json"
+      );
+      fs.readFile(p, (error, fileContent) => {
+        try {
+          cb(JSON.parse(fileContent));
+        } catch (error) {
+          console.log(error);
+          cb([]);
+        }
+      });
+    };
+    getProductsFromFile((products) => {
+      const product = products.find((p) => p.id === id);
+      cb(product);
     });
   }
 };

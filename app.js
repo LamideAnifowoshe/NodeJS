@@ -19,7 +19,7 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(admin);
+app.use("/admin", admin);
 app.use(shop);
 
 // app.use("/users", (req, res, next) => {
