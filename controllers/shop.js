@@ -22,15 +22,25 @@ exports.getProduct = (req, res, next) => {
   });
 };
 
-exports.getIndex = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("shop/index", {
-      prods: products,
-      pageTitle: "Shop",
-      path: "/",
-    });
+exports.getIndex = async (req, res, next) => {
+  Product.fetchAll(([rows, fieldData]) => {
+    try {
+      res.render("shop/index", {
+        prods: rows,
+        pageTitle: "Shop",
+        path: "/",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // }).catch((err) => {
+    //   console.log(err);
+    // });
   });
 };
+
+// module.exports = getIndex;
 
 exports.getCart = (req, res, next) => {
   Cart.getCart((cart) => {

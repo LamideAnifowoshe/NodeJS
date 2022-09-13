@@ -6,7 +6,7 @@ const admin = require("./routes/admin");
 const shop = require("./routes/shop");
 const errorController = require("./controllers/error");
 // const expressHbs = require("express-handlebars");
-const db = require("./util/database");
+// const db = require("./util/database");
 
 const app = express();
 
@@ -16,8 +16,6 @@ const app = express();
 // app.set("view engine", "pug");
 app.set("view engine", "ejs");
 app.set("views", "views");
-
-db.execute("SELECT * from PRODUCTS").then().catch();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
