@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Cart = require("../models/cart");
+const { promiseImpl } = require("ejs");
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
@@ -22,25 +23,19 @@ exports.getProduct = (req, res, next) => {
   });
 };
 
-exports.getIndex = async (req, res, next) => {
-  Product.fetchAll(([rows, fieldData]) => {
-    try {
+exports.getIndex = (req, res, next) => {
+  Product.fetchAll()
+    .then(([rows, fieldData]) => {
       res.render("shop/index", {
         prods: rows,
         pageTitle: "Shop",
         path: "/",
       });
-    } catch (error) {
-      console.log(error);
-    }
-
-    // }).catch((err) => {
-    //   console.log(err);
-    // });
-  });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
-
-// module.exports = getIndex;
 
 exports.getCart = (req, res, next) => {
   Cart.getCart((cart) => {

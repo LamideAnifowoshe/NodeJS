@@ -64,7 +64,7 @@ module.exports = class Product {
   }
 
   static fetchAll() {
-    db.execute("SELECT * from PRODUCTS");
+    return db.execute("SELECT * from PRODUCTS");
 
     // getProductsFromFile(cb);
   }
