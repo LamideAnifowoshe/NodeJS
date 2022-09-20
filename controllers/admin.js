@@ -22,12 +22,13 @@ exports.postAddProduct = (req, res, next) => {
   //   .catch((err) => {
   //     console.log(err);
   //   });
-  Product.create({
-    title: title,
-    price: price,
-    imageUrl: imageUrl,
-    description: description,
-  })
+  req.user
+    .createProduct({
+      title: title,
+      price: price,
+      imageUrl: imageUrl,
+      description: description,
+    })
     .then((result) => {
       console.log("product created");
       res.redirect("/admin/products");
@@ -36,6 +37,20 @@ exports.postAddProduct = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+  //   Product.create({
+  //     title: title,
+  //     price: price,
+  //     imageUrl: imageUrl,
+  //     description: description,
+  //   })
+  //     .then((result) => {
+  //       console.log("product created");
+  //       res.redirect("/admin/products");
+  //       // console.log(result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
 };
 
 exports.getEditProduct = (req, res, next) => {
