@@ -3,34 +3,49 @@ const MongoClient = mongodb.MongoClient;
 
 let _db;
 
-const mongoConnect = (callback) => {
-  MongoClient.connect(
-    "mongodb+srv://mainuser:Amazing01.@clusterexpress.ielab8o.mongodb.net/?retryWrites=true&w=majority"
-  )
-    .then((client) => {
-      console.log("Connected!");
-      return client.db();
-      // console.log(_db);
+// const mongoConnect = (callback) => {
+//   MongoClient.connect(
+//     "mongodb+srv://mainuser:Amazing01.@clusterexpress.ielab8o.mongodb.net/?retryWrites=true&w=majority"
+//   )
+//     .then((client) => {
+//       console.log("Connected!");
+//       _db = client.db("lammy");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       throw err;
+//     });
+// };
 
-      // callback();
-    })
-    .catch((err) => {
-      console.log(err);
-      throw err;
-    });
-};
+const getDb = async () => {
+  try {
+    const client = new MongoClient(
+      "mongodb+srv://mainuser:Amazing01.@clusterexpress.ielab8o.mongodb.net/?retryWrites=true&w=majority"
+    );
 
-const getDb = () => {
-  if (_db) {
-    return _db;
-  } else {
-    return mongoConnect;
+    // (await MongoClient.connect(
+    //   "mongodb+srv://mainuser:Amazing01.@clusterexpress.ielab8o.mongodb.net/?retryWrites=true&w=majority"
+    // )).;
+
+    const db = client.db("ShoppingPageDb");
+    // console.log("Connected!");
+    return db;
+  } catch (error) {
+    console.dir(error);
   }
-  throw "No database found!";
+
+  // console.log(_db);
+
+  // callback();
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  //   throw err;
+  // });
 };
 
-module.exports = mongoConnect;
-exports.getDb = getDb;
+// module.exports = mongoConnect;
+module.exports = getDb;
 // const Sequelize = require("sequelize");
 
 // const sequelize = new Sequelize("node-complete", "root", "27111997", {
